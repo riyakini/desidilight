@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeMaker Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary-color: #ff6b35;
+            --secondary-color: #2f4858;
+            --background-color: #f5f7fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+        }
+
+        .navbar {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .main-container {
+            display: flex;
+            margin-top: 60px;
+            min-height: calc(100vh - 60px);
+        }
+
+        .sidebar {
+            width: 250px;
+            background: white;
+            padding: 2rem;
+            border-right: 1px solid #eee;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            margin: 0.5rem 0;
+            border-radius: 8px;
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .menu-item:hover {
+            background-color: #f0f2f5;
+        }
+
+        .menu-item.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .content {
+            flex: 1;
+            padding: 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .btn {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            text-decoration: none
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            color: var(--secondary-color);
+            margin-top: 0.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.875rem;
+        }
+
+        .status-pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .status-completed {
+            background-color: #d4edda;
+            color: #155724;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="#" class="logo">HomeMaker Portal</a>
+        <div>
+            <span>Welcome,<%=user.name%></span>
+            <a href="/logout" class="btn !no-underline decoration-none">Logout</a>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <aside class="sidebar">
+            <a href="#dashboard" class="menu-item active">Dashboard</a>
+            <a href="/cookorder" class="menu-item">Orders</a>
+            <a href="#menu" class="menu-item">Menu</a>
+            <a href="/cookpublicprofile" class="menu-item">Profile</a>
+            <a href="#earnings" class="menu-item">Earnings</a>
+            <a href="/home" class="menu-item">Main page</a>
+        </aside>
+
+        <main class="content">
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-value">₹2,450</div>
+                    <div class="stat-label">Today's Earnings</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">12</div>
+                    <div class="stat-label">Active Orders</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">4.8</div>
+                    <div class="stat-label">Rating</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Recent Orders</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Items</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Request</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tbody>
+                            
+                                    
+                            <tr>
+                                <td>1</td>
+                                <td>Riya</td>
+                                <td>meal</td>
+                                <td>60</td>
+                                <td><span class="status-badge status-pending">Pending</span></td>
+                                <td>
+                                    <button class="btn" style="margin-right: 5px;">Accept</button>
+                                    <button class="btn" style="background: #dc3545;">Decline</button>
+                                </td>
+                            </tr>
+                           
+                        </tbody>
+                    </tbody>
+                    
+                </table>
+            </div>
+            <div class="stat-card">
+              <h2 class="stat-label mb-6 font-bold ">Create Service </h2>
+               <a href="/createPost" style="font-weight: bold;
+            color: white;font-size: 20px" class="text-xl btn ">Create</a>
+            </div>
+        </main>
+    </div>
+    
+    <script>
+        // Handle Accept and Decline buttons
+        document.querySelectorAll('table button').forEach(button => {
+            button.addEventListener('click', function() {
+                const row = this.closest('tr');
+                const buttonsCell = row.querySelector('td:last-child');
+                const statusCell = row.querySelector('.status-badge');
+                
+                if (this.textContent === 'Accept') {
+                    // Handle Accept click
+                    statusCell.textContent = 'Completed';
+                    statusCell.classList.remove('status-pending');
+                    statusCell.classList.add('status-completed');
+                    buttonsCell.innerHTML = '<span style="color: var(--primary-color); font-weight: bold;">Accepted</span>';
+                } else {
+                    // Handle Decline click
+                    statusCell.textContent = 'Declined';
+                    statusCell.style.backgroundColor = '#ffcdd2';
+                    statusCell.style.color = '#c62828';
+                    statusCell.classList.remove('status-pending');
+                    buttonsCell.innerHTML = '<span style="color: #dc3545; font-weight: bold;">Declined</span>';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

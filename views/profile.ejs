@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desi Delights</title>
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+    <style>
+        /* Copy the common styles from dash.html */
+        :root {
+            --primary-color: #ff6b35;
+            --secondary-color: #2f4858;
+            --background-color: #f5f7fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+        }
+
+        .navbar {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .main-container {
+            margin-top: 80px;
+            padding: 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .btn {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .profile-display {
+            display: none;
+            margin-top: 2rem;
+        }
+
+        .profile-info {
+            margin-top: 1rem;
+        }
+
+        .profile-info p {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .profile-info strong {
+            color: var(--secondary-color);
+        }
+
+        /* Add these new styles */
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1rem;
+            display: block;
+        }
+
+        .photo-upload {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        #photoPreview {
+            display: none;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="dash.html" class="logo">Desi Delights</a>
+        <div>
+            <a class="btn" href="/cookpublicprofile" ><i class="ri-arrow-left-line mr-5"></i>Back to profile</a>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <div class="card">
+            <h2 style="margin-bottom: 1.5rem; color: var(--secondary-color);">HomeMaker Profile</h2>
+            
+            <form id="profileForm" method="post">
+                
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <input type="text" id="location" required>
+                </div>
+                <div class="form-group">
+                    <label for="experience">Experience (in years)</label>
+                    <input type="number" id="experience" required min="0">
+                </div>
+                <div class="form-group">
+                    <label for="specialities">Specialities</label>
+                    <textarea id="specialities" rows="4" required placeholder="Enter your cooking specialities..."></textarea>
+                </div>
+                <div class="form-group text-black">
+                    <label for="contact">Contact</label>
+                    <input type="number" name="contact" id="">
+                </div>
+                <button type="submit" class="btn">Create Profile</button>
+            </form>
+
+            <!-- Add this after the profile display div -->
+            <div id="profileDisplay" class="profile-display">
+                <h3 style="color: var(--primary-color); margin-bottom: 1rem;">Your Profile</h3>
+                <div class="profile-info">
+                    <p><strong>Name:</strong> <span id="displayName"></span></p>
+                    <p><strong>Location:</strong> <span id="displayLocation"></span></p>
+                    <p><strong>Experience:</strong> <span id="displayExperience"></span> years</p>
+                    <p><strong>Specialities:</strong></p>
+                    <p id="displaySpecialities"></p>
+                </div>
+            </div>
+            <div style="margin-top: 2rem; text-align: center;">
+                <a href="/publicprofile" class="btn no-underline  ">View Public Profile</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add photo preview functionality
+        document.getElementById('photo').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const preview = document.getElementById('photoPreview');
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.getElementById('profileForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values including photo
+            const photo = document.getElementById('photoPreview').src;
+            const name = document.getElementById('name').value;
+            const location = document.getElementById('location').value;
+            const experience = document.getElementById('experience').value;
+            const specialities = document.getElementById('specialities').value;
+        
+            // Display the profile
+            document.getElementById('displayPhoto').src = photo;
+            document.getElementById('displayName').textContent = name;
+            document.getElementById('displayLocation').textContent = location;
+            document.getElementById('displayExperience').textContent = experience;
+            document.getElementById('displaySpecialities').textContent = specialities;
+        
+            // Hide the form and show the profile display
+            document.getElementById('profileForm').style.display = 'none';
+            document.getElementById('profileDisplay').style.display = 'block';
+        
+            // Save to localStorage
+            const profileData = { photo, name, location, experience, specialities };
+            localStorage.setItem('homemakerProfile', JSON.stringify(profileData));
+        });
+    
+        // Load profile data if it exists
+        window.addEventListener('load', function() {
+            const savedProfile = localStorage.getItem('homemakerProfile');
+            if (savedProfile) {
+                const profileData = JSON.parse(savedProfile);
+                
+                // Hide the form since profile already exists
+                document.getElementById('profileForm').style.display = 'none';
+    
+                // Display the profile with photo
+                document.getElementById('displayPhoto').src = profileData.photo;
+                document.getElementById('displayName').textContent = profileData.name;
+                document.getElementById('displayLocation').textContent = profileData.location;
+                document.getElementById('displayExperience').textContent = profileData.experience;
+                document.getElementById('displaySpecialities').textContent = profileData.specialities;
+    
+                document.getElementById('profileDisplay').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

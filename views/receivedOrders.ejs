@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Received Orders</title>
+</head>
+<body>
+    <h1>Received Orders</h1>
+    <% if (orders.length > 0) { %>
+        <ul>
+            <% orders.forEach(order => { %>
+                <li>
+                    <h2><%= order.name %></h2>
+                    <p>Price: $<%= order.price %></p>
+                    <p>Description: <%= order.description %></p>
+                    <p>Location: <%= order.location %></p>
+                </li>
+            <% }) %>
+        </ul>
+    <% } else { %>
+        <p>No orders received yet.</p>
+    <% } %>
+    <a href="/cookDashboard">Back to Dashboard</a>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/css/styles.css" rel="stylesheet">
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  <title>Create Post</title>
+</head>
+<body class="bg-gray-100">
+    
+  <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-blue-500">
+            <span class="inline-block mt-1 mb-1 text-white">
+            
+            </span>
+        </div>
+           
+
+            <div class="min-h-screen flex flex-col">
+                
+                <div class="container px-10 py-20 flex flex-grow">
+                    
+                    <div class="w-[25%] flex h-150 flex-col items-start">
+                        <div class="flex flex-col">
+                            <a href="cookDashboard">Back To Dashboard</a>
+                            <a class="block w-fit mb-2" href="">All Service</a>
+                            <a class="block w-fit mb-2" href="/createPost">Create new Service</a>
+                            <a class="block w-fit mb-2" href="/home">Navigate to Home</a>
+                        </div>
+                    </div>
+                    <main class="w-3/4 bg-white p-8 shadow ml-4">
+                        <h2 class="text-xl font-bold mb-4">Create New Service</h2>
+                        <form autocomplete="off" action="/createPost" method="post" enctype="multipart/form-data">
+                            <div class="mb-6">
+                                <h3 class="text-lg font-semibold mb-2">Service Details</h3>
+                                <div class="mb-4">
+                                    <label class="block mb-2 font-medium">Service Image</label>
+                                    <input name="image" type="file" class="py-2 px-4 rounded" value="Select File">
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <input name="name" type="text" placeholder="Service Name"
+                                        class="border p-2 rounded w-full">
+                                    <input name="cookname" type="text" placeholder="Cook Name"
+                                        class="border p-2 rounded w-full">
+                                    <input name="speciality" type="text" placeholder="Speciality"
+                                        class="border p-2 rounded w-full">
+                                    <input name="price" type="text" placeholder="Service Price"
+                                        class="border p-2 rounded w-full">
+                                    <input name="description" type="text" placeholder="Discription"
+                                        class="border p-2 rounded w-full">
+                                    <input name="location" type="text" placeholder="Location"
+                                        class="border p-2 rounded w-full">
+                                        <input name="contact" type="text" placeholder="Contact"
+                                        class="border p-2 rounded w-full">
+                                </div>
+                            </div>
+
+                            <div>
+                        
+                            </div>
+                            <input class="px-5 py-2 rounded mt-3 bg-blue-500 text-white" type="submit"
+                                value="Create New Service">
+                        </form>
+                    </main>
+                </div>
+            </div>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeCook - Homemade Indian Meals</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: 'hsl(25, 95%, 53%)',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/80 backdrop-blur-sm z-50 border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="#" class="text-2xl font-bold text-primary">Desi Delights</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="#features" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">Features</a>
+                    <a href="#how-it-works" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">How it Works</a>
+                    <a href="#contact" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">Contact</a>
+                    <button class="bg-primary text-white px-4 py-2 rounded-md text-sm font-medium">Get Started</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="relative overflow-hidden bg-white pt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 text-center lg:pt-32">
+            <h1 class="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-gray-900 sm:text-7xl">
+                Homemade Indian Meals
+                <span class="relative whitespace-nowrap text-primary">
+                    <span class="relative">Made With Love</span>
+                </span>
+            </h1>
+            <p class="mx-auto mt-6 max-w-2xl text-lg tracking-tight text-gray-600">
+                Connect with local homemakers for authentic, healthy Indian meals. Perfect for students and professionals away from home.
+            </p>
+            <div class="mt-10 flex justify-center gap-x-6">
+                <a href="/userLogin" class="bg-primary text-white px-6 py-3 rounded-md text-lg font-medium">Order Now</a>
+                <a href="/cookLogin"  class="border border-gray-300 text-gray-700 px-6 py-3 rounded-md text-lg font-medium">Become a Cook</a>
+            </div>
+            <div class="mt-16 lg:mt-24">
+                <div class="relative mx-auto max-w-5xl">
+                    <img src="https://images.unsplash.com/photo-1481277542470-605612bd2d61" alt="Indian home cooking" class="rounded-xl shadow-2xl w-full">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <section id="features" class="py-24 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Platform Features</h2>
+                <p class="mt-4 text-lg text-gray-600">Everything you need to connect with homemade food</p>
+            </div>
+
+            <div class="mt-20 grid grid-cols-1 gap-8 sm:grid-cols-2">
+                <!-- For Cooks -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold mb-4 text-primary">For Home Cooks</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <span class="text-primary mr-2">✓</span>
+                            <span>Create your profile and showcase your specialties</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-primary mr-2">✓</span>
+                            <span>List daily/weekly meals with ingredients and style</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-primary mr-2">✓</span>
+                            <span>Simple dashboard for order management</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-primary mr-2">✓</span>
+                            <span>Secure payment system in Indian Rupees</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- For Customers -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold mb-4 text-primary">For Customers</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <span class="text-primary mr-2">✓</span>
+                            <span>Search meals by location, meal type, or price</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-primary mr-2">✓</span>
+                            <span>Order individual meals as needed</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-primary mr-2">✓</span>
+                            <span>Filter by dietary preferences (Veg/Non-veg/Jain)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-primary mr-2">✓</span>
+                            <span>Direct chat with cooks for special requests</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">How It Works</h2>
+                <p class="mt-4 text-lg text-gray-600">Getting delicious homemade meals is easy</p>
+            </div>
+
+            <div class="mt-20 grid grid-cols-1 gap-8 md:grid-cols-3">
+                <!-- Step 1 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="p-6">
+                        <div class="mb-6 overflow-hidden rounded-lg aspect-video">
+                            <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f" alt="Find Cooks" class="w-full h-full object-cover">
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <div class="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-white font-bold">1</div>
+                            <h3 class="ml-4 text-xl font-semibold">Find Local Cooks</h3>
+                        </div>
+                        <p class="text-gray-600">Search for verified home cooks in your area and browse their menus</p>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="p-6">
+                        <div class="mb-6 overflow-hidden rounded-lg aspect-video">
+                            <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858" alt="Pre-book Meals" class="w-full h-full object-cover">
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <div class="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-white font-bold">2</div>
+                            <h3 class="ml-4 text-xl font-semibold">Pre-book Your Meals</h3>
+                        </div>
+                        <p class="text-gray-600">Reserve your meals in advance and chat with the cook about preferences</p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="p-6">
+                        <div class="mb-6 overflow-hidden rounded-lg aspect-video">
+                            <img src="https://images.unsplash.com/photo-1596450514537-fae68a81346b" alt="Enjoy Food" class="w-full h-full object-cover">
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <div class="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-white font-bold">3</div>
+                            <h3 class="ml-4 text-xl font-semibold">Enjoy Home Cooking</h3>
+                        </div>
+                        <p class="text-gray-600">Get your meals delivered or pick them up as per your convenience</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Get Started Today</h2>
+                <p class="mt-4 text-lg text-gray-600">Join our community of home cooks and food lovers</p>
+            </div>
+
+            <div class="mt-20 max-w-xl mx-auto">
+                <form class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Name</label>
+                        <input type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Email</label>
+                        <input type="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">I am a</label>
+                        <select class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
+                            <option value="customer">Customer</option>
+                            <option value="cook">Home Cook</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Message</label>
+                        <textarea class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-primary text-white px-4 py-2 rounded-md font-medium">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-1 md:col-span-2">
+                    <a href="#" class="text-2xl font-bold text-primary">Desi Delights</a>
+                    <p class="mt-4 text-sm text-gray-600">
+                        Connecting passionate home cooks with students and professionals.
+                        Enjoy authentic Indian meals made with love.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-900 tracking-wider uppercase">Platform</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="#features" class="text-gray-600 hover:text-gray-900">Features</a></li>
+                        <li><a href="#how-it-works" class="text-gray-600 hover:text-gray-900">How it Works</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-900 tracking-wider uppercase">Legal</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="#" class="text-gray-600 hover:text-gray-900">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-gray-900">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-200">
+                <p class="text-center text-sm text-gray-600">
+                    &copy; 2024 HomeCook. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

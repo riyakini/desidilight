@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desi Delights</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: 'hsl(25, 95%, 53%)',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <nav class="fixed w-full bg-white/80 backdrop-blur-sm z-50 border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center flex-1">
+                    <a href="#" class="text-2xl font-bold text-primary hover:text-primary/90 transition-colors">Desi Delights</a>
+                    <!-- In the navigation section, update the search input and its container -->
+                    <div class="relative ml-4 flex-1 max-w-md">
+                        <div class="relative flex items-center">
+                            <input type="text" 
+                                   id="searchInput" 
+                                   class="w-full bg-gray-100 border-none rounded-full shadow-sm px-5 py-2.5 pr-12 focus:ring-2 focus:ring-primary/20 focus:bg-white outline-none transition-all" 
+                                   placeholder="Search dishes, homemakers, or locations...">
+                            <button id="searchButton" class="absolute right-2 p-2 text-gray-400 hover:text-gray-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div id="searchResults" class="hidden absolute w-full bg-white mt-2 rounded-2xl shadow-lg border border-gray-200 max-h-96 overflow-y-auto z-50">
+                            <!-- Results will appear here -->
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="/order" class="bg-primary hover:bg-primary/90 transition-colors text-white px-6 py-2 rounded-md text-sm font-medium">Track Orders</a>
+                    <a href="/logout" class="bg-primary hover:bg-primary/90 transition-colors text-white px-6 py-2 rounded-md text-sm font-medium">Logout</a>
+                </div>
+                <button class="md:hidden p-2 rounded-md hover:bg-gray-100 transition-colors" id="mobileMenuButton">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            <!-- Mobile menu -->
+            <div class="md:hidden hidden" id="mobileMenu">
+                <div class="px-2 pt-2 pb-3 space-y-1">
+                    <a href="#" class="block w-full bg-primary hover:bg-primary/90 transition-colors text-white px-4 py-2 rounded-md text-sm font-medium mb-2">Track Orders</a>
+                    <button class="w-full bg-primary hover:bg-primary/90 transition-colors text-white px-4 py-2 rounded-md text-sm font-medium">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content with proper top padding to prevent nav overlap -->
+    <main class="pt-20">
+        <!-- Banner Section -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="w-full h-[400px] rounded-xl overflow-hidden shadow-lg">
+                <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=1200&h=400&q=80" 
+                     alt="Delicious Indian Cuisine" 
+                     class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+            </div>
+        </div>
+
+        <!-- Homemakers Section -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <h2 class="text-3xl font-bold mb-6">Available Homemakers</h2>
+           
+            <div class="space-y-8" id="homemakerGrid">
+                <!-- Homemaker cards will be populated here -->
+                 
+            </div>
+        </div>
+    </main>
+    
+    <div class="w-full h-screen flex items-start px-20 py-20">
+        <div class="w-[25%] flex h-screen flex-col items-start">
+            <div class="flex items-center gap-2">
+                <h3>sort by</h3>
+                <form action="/shop">
+                    <select class="border-[1px] px-2 py-1" name="sortby" id="">
+                        <option value="popular">Popular</option>
+                        <option value="newest">Newest</option>
+                    </select>
+                </form>
+            </div>
+            <div class="flex flex-col mt-20">
+                <a class="block w-fit mb-2" href="">All Services</a>
+                <a class="block w-fit mb-2" href="/order">My Order</a>
+            </div>
+            <div class="mt-32">
+                <a class="block w-fit mb-2" href="">Filter by :</a>
+                <a class="block w-fit mb-2" href="">Availability</a>
+            </div>
+        </div>
+        <div class="w-[75%] flex flex-col gap-5 h-screen ">
+            <div>
+            <h1 class="mb-5 text-2xl ">Nearby Services Based on your Location <span class="font-bold"><%= userLocation %></span>.. </h1>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <% posts.forEach(function(post){ %>
+                    <div class="post-card bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
+                        <!-- Image Section -->
+                        <div class="w-full h-48 bg-blue-500 flex items-center justify-center">
+                            <img class="object-cover w-full h-full" src="data:image/jpeg;base64,<%= post.image.toString('base64') %>" alt="Post Image">
+                        </div>
+            
+                        <!-- Content Section -->
+                        <div class="flex flex-col justify-between p-4 space-y-2 flex-grow">
+                            <div class="space-y-2">
+                                <h3 class="text-xl font-semibold text-gray-800"><%= post.name %></h3>
+                                <p class="text-lg text-gray-600">Price: ₹<%= post.price %></p>
+                                <p class="text-gray-500 text-sm"><%= post.description %></p>
+                                <p class="font-semibold text-sm text-gray-700">Location: <%= post.location %></p>
+                                <p class="font-semibold text-sm text-gray-700">Contact: <%= post.contact %></p>
+                            </div>
+                            
+                            <div class="flex justify-between items-center mt-4">
+                                <a class="w-8 h-8 flex items-center justify-center rounded-full bg-blue-500 text-white" href="/addOrder/<%=post._id%>">
+                                    <i class="ri-add-line"></i>
+                                </a>
+                                <a class="bg-primary text-white text-sm px-4 py-2 rounded-lg mt-2 block text-center" href="/cookpublicprofile/<%= post._id %>">
+                                    View Profile
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+                
+            </div>
+            </div>
+            <h1 class="text-2xl"> All SERVICES </h1>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <% post.forEach(function(post){ %>
+                    <div class="post-card bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
+                        <!-- Image Section -->
+                        <div class="w-full h-48 bg-blue-500 flex items-center justify-center">
+                            <img class="object-cover w-full h-full" src="data:image/jpeg;base64,<%= post.image.toString('base64') %>" alt="Post Image">
+                        </div>
+            
+                        <!-- Content Section -->
+                        <div class="flex flex-col justify-between p-4 space-y-2 flex-grow">
+                            <div class="space-y-2">
+                                <h3 class="text-xl font-semibold text-gray-800"><%= post.name %></h3>
+                                <p class="text-lg text-gray-600">Price: ₹<%= post.price %></p>
+                                <p class="text-gray-500 text-sm"><%= post.description %></p>
+                                <p class="font-semibold text-sm text-gray-700">Location: <%= post.location %></p>
+                                <p class="font-semibold text-sm text-gray-700">Contact: <%= post.contact %></p>
+                            </div>
+                            
+                            <div class="flex justify-between items-center mt-4">
+                                <a class="w-8 h-8 flex items-center justify-center rounded-full bg-blue-500 text-white" href="/addOrder/<%=post._id%>">
+                                    <i class="ri-add-line"></i>
+                                </a>
+                                <a class="bg-primary text-white text-sm px-4 py-2 rounded-lg mt-2 block text-center" href="/cookpublicprofile/<%= post._id %>">
+                                    View Profile
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+            
+            
+            
+        </div>
+    </div>
+    
+    
+   
+</body>
+</html>
